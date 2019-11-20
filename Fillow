@@ -1,0 +1,52 @@
+package vamsi_krishna;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import com.codoid.products.exception.FilloException;
+import com.codoid.products.fillo.Connection;
+import com.codoid.products.fillo.Fillo;
+import com.codoid.products.fillo.Recordset;
+
+public class Fillo_example {
+
+	public static void main(String[] args) throws FilloException {
+//		WebDriver driver;
+//		String s ="C:\\Users\\training\\Documents\\selenium\\chromedriver_win32 (2)\\chromedriver.exe";
+//
+//		System.setProperty("webdriver.chrome.driver", s);
+//		driver = new ChromeDriver();
+//		driver.get("https://www.amazon.com/");
+//		Fillo fillo = new Fillo();
+//		Connection connection = fillo.getConnection("C:\\Users\\training\\Documents\\TestData.xlsx");
+//		String strQuary = "Select * from Sheet1";
+//		Recordset rc = connection.executeQuery(strQuary);
+//		while(rc.next()) {
+//			System.out.println(rc.getField("username")+"---------"+rc.getField("lastname")+"---------"+rc.getField("nickname"));
+//		
+//		}
+//		rc.moveFirst();
+//		System.out.println(rc.getField("username")+"---------"+rc.getField("password")+"---------"+rc.getField("nickname"));
+//		rc.moveLast();
+//		System.out.println(rc.getField("username")+"---------"+rc.getField("password")+"---------"+rc.getField("nickname"));
+//		rc.movePrevious();
+//		System.out.println(rc.getField("username")+"---------"+rc.getField("password")+"---------"+rc.getField("nickname"));
+//		rc.moveNext();
+//		System.out.println(rc.getField("username")+"---------"+rc.getField("password")+"---------"+rc.getField("nickname"));
+//		rc.getCount();
+		Fillo fillo = new Fillo();
+		Connection connection = fillo.getConnection("C:\\Users\\training\\Documents\\TestData.xlsx");
+		String strQuary = "Select * from Sheet1 where nickname = 'VAMC'";
+		Recordset rc = connection.executeQuery(strQuary);
+		while(rc.next()) {
+			//rc.moveFirst();
+			//System.out.println(rc.getField("username"));
+			String el = rc.getField("username");
+			System.out.println(el);
+		}
+		rc.close();
+		connection.close();
+		
+	}
+
+}
