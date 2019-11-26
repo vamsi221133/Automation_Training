@@ -1,0 +1,32 @@
+package windohandles;
+
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class New_tab_Handle {
+
+	public static void main(String[] args) {
+		WebDriver driver;
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\hi\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("http://toolsqa.com/automation-practice-switch-windows/");
+		System.out.println("parent window url : "+driver.getCurrentUrl());
+		String main = driver.getWindowHandle();
+		driver.findElement(By.xpath("//*[text()='New Browser Tab']")).click();
+		
+		Set<String> list = driver.getWindowHandles();
+		System.out.println("number of windows are "+list.size());
+		System.out.println("current page url is :"+driver.getCurrentUrl());
+		
+		for(String st : list) {
+		driver.switchTo().window(st);
+		System.out.println("current page url is :"+driver.getCurrentUrl());
+		if(!st.equalsIgnoreCase(main)) {
+		driver.close();
+		}
+	}
+	}
+}
