@@ -1,0 +1,33 @@
+package windohandles;
+
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Window_handle_method2 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		WebDriver driver;
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\hi\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("http://toolsqa.com/automation-practice-switch-windows/");
+		System.out.println("parent window url : "+driver.getCurrentUrl());
+		for(int i=0;i<4;i++)
+		{
+		driver.findElement(By.id("button1")).click();
+		}
+		String main = driver.getWindowHandle();
+		Set<String> list = driver.getWindowHandles();
+		for(String st : list) {
+		System.out.println("main is :"+main+" and chaild is "+st);
+		if(!main.equalsIgnoreCase(st)) {
+			Thread.sleep(1500);
+			driver.switchTo().window(st);
+			driver.close();
+		}
+	}
+	}
+}
